@@ -82,20 +82,19 @@ Fraction::Fraction(const int num) :
 
 }
 
-Fraction::Fraction(const internalInt num,const internalInt denom,const Sign _sign) :
+Fraction::Fraction(const internalInt num, const internalInt denom, const Sign _sign) :
       numerator(num), denominator(denom), sign(_sign)
 {
    assert(denom != (0));
    reduce();
 }
 
-Fraction::Fraction(const unsigned num,const unsigned denom,const Sign _sign) :
+Fraction::Fraction(const unsigned num, const unsigned denom, const Sign _sign) :
       numerator(num), denominator(denom), sign(_sign)
 {
    assert(denom != (0));
    reduce();
 }
-
 
 Fraction::Fraction(const internalInt num) :
       numerator(num), denominator(1), sign(positive)
@@ -158,11 +157,30 @@ Fraction::~Fraction()
 {
 }
 
-Fraction Fraction::DividedBy(const Fraction&value) const
+Fraction Fraction::addTo(const Fraction& rhs) const
 {
-   if(value.numerator == 0)
+   internalInt val = lcm(this->denominator, rhs.denominator);
+   Fraction result;
+
+   if (sign == rhs.sign)
    {
-     std::cerr<<"division by zero!";
+      result = Fraction(this->numerator * (val / this->denominator) + rhs.numerator * (val / rhs.denominator), val, sign);
+   }
+   else
+   {
+      Sign maxSign = (*this) > rhs ? this->sign : rhs.sign;
+      Fraction maxFrac = (*this) > rhs ? *this : rhs;
+      Fraction minFrac = (!((*this) > rhs)) ? *this : rhs;
+      result = Fraction(maxFrac.numerator * (val / maxFrac.denominator) - minFrac.numerator * (val / minFrac.denominator), val, maxSign);
+   }
+   return result;
+}
+
+Fraction Fraction::dividedBy(const Fraction&value) const
+{
+   if (value.numerator == 0)
+   {
+      std::cerr << "division by zero!";
       throw "division by zero!";
    }
    Fraction result;
@@ -214,9 +232,7 @@ void Fraction::fromDecimal(double decimal, internalInt maxDenom)
       maxDenom = ULONG_MAX;
    }
    /*  a: continued fraction coefficients. */
-   internalInt a, h[3] = { 0, 1, 0 }, k[3] = { 1, 0, 0 };
-   internalInt x, d, n = 1;
-   internalInt i;
+   internalInt a, h[3] = { 0, 1, 0 }, k[3] = { 1, 0, 0 }, x, d, n = 1, i;
 
    if (maxDenom <= 1)
    {
@@ -243,20 +259,26 @@ void Fraction::fromDecimal(double decimal, internalInt maxDenom)
    {
       a = n ? d / n : 0;
       if (i && !a)
+      {
          break;
+      }
 
       x = d;
       d = n;
       n = x % n;
-
       x = a;
-      if (k[1] * a + k[0] >= maxDenom)
+
+      if (k[1]* a + k[0] >= maxDenom)
       {
          x = (maxDenom - k[0]) / k[1];
          if (x * 2 >= a || k[1] >= maxDenom)
+         {
             i = 129;
+         }
          else
+         {
             break;
+         }
       }
 
       h[2] = x * h[1] + h[0];
@@ -303,21 +325,7 @@ Fraction& Fraction::operator=(const internalInt value)
 /* Addition Operators */
 Fraction Fraction::operator+(const Fraction&rhs) const
 {
-   internalInt val = lcm(this->denominator, rhs.denominator);
-   Fraction result;
-
-   if (sign == rhs.sign)
-   {
-      result = Fraction(this->numerator * (val / this->denominator) + rhs.numerator * (val / rhs.denominator), val, sign);
-   }
-   else
-   {
-      Sign maxSign = (*this) > rhs ? this->sign : rhs.sign;
-      Fraction maxFrac = (*this) > rhs ? *this : rhs;
-      Fraction minFrac = (!((*this) > rhs)) ? *this : rhs;
-      result = Fraction(maxFrac.numerator * (val / maxFrac.denominator) - minFrac.numerator * (val / minFrac.denominator), val, maxSign);
-   }
-   return result;
+   return this->addTo(rhs);
 }
 
 Fraction Fraction::operator+(const inputInt value) const
@@ -343,37 +351,36 @@ Fraction operator+(const internalInt value, const Fraction&rhs)
 
 Fraction Fraction::operator/(const Fraction&rhs) const
 {
-   return this->DividedBy(rhs);
+   return this->dividedBy(rhs);
 }
 
 Fraction Fraction::operator/(const inputInt value) const
 {
-   return this->DividedBy(Fraction(value));
+   return this->dividedBy(Fraction(value));
 }
-
 
 Fraction Fraction::operator/(const internalInt value) const
 {
-   return this->DividedBy(Fraction(value));
+   return this->dividedBy(Fraction(value));
 }
 
 Fraction operator/(const internalInt value, const Fraction&rhs)
 {
-   return Fraction(value).DividedBy(rhs);
+   return Fraction(value).dividedBy(rhs);
 }
 
 /* Multiply operators */
 
 Fraction Fraction::operator*(const Fraction&rhs) const
 {
-   return Fraction(this->numerator * rhs.numerator, rhs.denominator * this->denominator,sign==rhs.sign?positive:negative);
+   return Fraction(this->numerator * rhs.numerator, rhs.denominator * this->denominator, sign == rhs.sign ? positive : negative);
 }
 
 Fraction Fraction::operator*(const inputInt value) const
 {
    Fraction result;
    result.numerator *= abs(value);
-   if(value<0)
+   if (value < 0)
    {
       result.flipSign();
    }
@@ -456,7 +463,6 @@ bool operator==(const internalInt value, const Fraction&rhs)
 {
    return Fraction(value) == rhs;
 }
-
 
 /*Not-Equal-to Operators*/
 

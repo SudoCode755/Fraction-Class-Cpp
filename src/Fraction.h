@@ -21,7 +21,8 @@ private:
 
    internalInt lcm(inputInt num1, inputInt num2) const;
 
-   Fraction DividedBy(const Fraction&value) const;
+   Fraction dividedBy(const Fraction&value) const;
+   Fraction addTo(const Fraction& value) const;
 public:
 
    Fraction();
