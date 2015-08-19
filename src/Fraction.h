@@ -1,7 +1,7 @@
 #ifndef FRACTIONS_H_
 #define FRACTIONS_H_
 
- enum Sign
+enum Sign
 {
    negative = -1, positive = 1
 };
@@ -74,6 +74,10 @@ public:
 
    Fraction& operator=(const internalInt value);
 
+   Fraction& operator=(const int value);
+
+   Fraction& operator=(const unsigned int value);
+
    /*Begin Arithmetic operators*/
 
    /* Addition Operators */
@@ -84,9 +88,17 @@ public:
 
    Fraction operator+(const internalInt value) const;
 
+   Fraction operator+(const int value) const;
+
+   Fraction operator+(const unsigned int value) const;
+
    friend Fraction operator+(const inputInt value, const Fraction&rhs);
 
    friend Fraction operator+(const internalInt value, const Fraction&rhs);
+
+   friend Fraction operator+(const int value, const Fraction&rhs);
+
+   friend Fraction operator+(const unsigned int value, const Fraction&rhs);
 
 
    /* Divide Operators */
@@ -97,9 +109,17 @@ public:
 
    Fraction operator/(const internalInt value) const;
 
+   Fraction operator/(const int value) const;
+
+   Fraction operator/(const unsigned int value) const;
+
    friend Fraction operator/(const inputInt value, const Fraction&rhs);
 
    friend Fraction operator/(const internalInt value, const Fraction&rhs);
+
+   friend Fraction operator/(const int value, const Fraction&rhs);
+
+   friend Fraction operator/(const unsigned int value, const Fraction&rhs);
 
    /* Multiply operators */
 
@@ -109,9 +129,18 @@ public:
 
    Fraction operator*(const internalInt value) const;
 
+   Fraction operator*(const int value) const;
+
+   Fraction operator*(const unsigned int value) const;
+
    friend Fraction operator*(const inputInt value, const Fraction&rhs);
 
    friend Fraction operator*(const internalInt value, const Fraction&rhs);
+
+   friend Fraction operator*(const int value, const Fraction&rhs);
+
+
+   friend Fraction operator*(const unsigned int value, const Fraction&rhs);
 
    /*Subtraction operators */
 
@@ -121,9 +150,17 @@ public:
 
    Fraction operator-(const internalInt value) const;
 
+   Fraction operator-(const int value) const;
+
+   Fraction operator-(const unsigned int value) const;
+
    friend Fraction operator-(const inputInt value, const Fraction&rhs);
 
    friend Fraction operator-(const internalInt value, const Fraction&rhs);
+
+   friend Fraction operator-(const int value, const Fraction&rhs);
+
+   friend Fraction operator-(const unsigned int value, const Fraction&rhs);
 
    /*End Arithmetic operators*/
 
@@ -200,7 +237,6 @@ public:
    friend bool operator<=(const inputInt value, const Fraction&rhs);
 
    friend bool operator<=(const internalInt value, const Fraction&rhs);
-
 
    /*End Comparison operators/relational operators*/
 

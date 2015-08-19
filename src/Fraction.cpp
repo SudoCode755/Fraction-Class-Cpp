@@ -268,7 +268,7 @@ void Fraction::fromDecimal(double decimal, internalInt maxDenom)
       n = x % n;
       x = a;
 
-      if (k[1]* a + k[0] >= maxDenom)
+      if (k[1] * a + k[0] >= maxDenom)
       {
          x = (maxDenom - k[0]) / k[1];
          if (x * 2 >= a || k[1] >= maxDenom)
@@ -322,6 +322,22 @@ Fraction& Fraction::operator=(const internalInt value)
    return *this;
 }
 
+Fraction& Fraction::operator=(const int value)
+{
+   this->numerator = value;
+   this->denominator = 1;
+   sign = value > 0 ? positive : negative;
+   return *this;
+}
+
+Fraction& Fraction::operator=(const unsigned int value)
+{
+   this->numerator = value;
+   this->denominator = 1;
+   sign = positive;
+   return *this;
+}
+
 /* Addition Operators */
 Fraction Fraction::operator+(const Fraction&rhs) const
 {
@@ -338,6 +354,17 @@ Fraction Fraction::operator+(const internalInt value) const
    return Fraction(value) + *this;
 }
 
+Fraction Fraction::operator+(const int value) const
+{
+   return Fraction(value) + *this;
+}
+
+Fraction Fraction::operator+(const unsigned int value) const
+{
+   return Fraction(value) + *this;
+}
+
+
 Fraction operator+(const inputInt value, const Fraction&rhs)
 {
    return Fraction(value) + rhs;
@@ -347,6 +374,16 @@ Fraction operator+(const internalInt value, const Fraction&rhs)
 {
    return Fraction(value) + rhs;
 }
+Fraction operator+(const int value, const Fraction&rhs)
+{
+   return Fraction(value) + rhs;
+}
+
+Fraction operator+(const unsigned int value, const Fraction&rhs)
+{
+   return Fraction(value) + rhs;
+}
+
 /* Divide Operators */
 
 Fraction Fraction::operator/(const Fraction&rhs) const
@@ -364,7 +401,32 @@ Fraction Fraction::operator/(const internalInt value) const
    return this->dividedBy(Fraction(value));
 }
 
+Fraction Fraction::operator/(const int value) const
+{
+   return this->dividedBy(Fraction(value));
+}
+
+Fraction Fraction::operator/(const unsigned value) const
+{
+   return this->dividedBy(Fraction(value));
+}
+
+Fraction operator/(const inputInt value, const Fraction&rhs)
+{
+   return Fraction(value).dividedBy(rhs);
+}
+
 Fraction operator/(const internalInt value, const Fraction&rhs)
+{
+   return Fraction(value).dividedBy(rhs);
+}
+
+Fraction operator/(const int value, const Fraction&rhs)
+{
+   return Fraction(value).dividedBy(rhs);
+}
+
+Fraction operator/(const unsigned value, const Fraction&rhs)
 {
    return Fraction(value).dividedBy(rhs);
 }
@@ -390,7 +452,21 @@ Fraction Fraction::operator*(const inputInt value) const
 
 Fraction Fraction::operator*(const internalInt value) const
 {
-   Fraction result;
+   Fraction result(*this);
+   result.numerator *= value;
+   return result;
+}
+
+Fraction Fraction::operator *(const unsigned int value) const
+{
+   Fraction result(*this);
+   result.numerator *= value;
+   return result;
+}
+
+Fraction Fraction::operator *(const int value) const
+{
+   Fraction result(*this);
    result.numerator *= value;
    return result;
 }
@@ -401,6 +477,16 @@ Fraction operator*(const inputInt value, const Fraction&rhs)
 }
 
 Fraction operator*(const internalInt value, const Fraction&rhs)
+{
+   return rhs * value;
+}
+
+Fraction operator*(const unsigned int value, const Fraction&rhs)
+{
+   return rhs * value;
+}
+
+Fraction operator*(const int value, const Fraction&rhs)
 {
    return rhs * value;
 }
@@ -424,6 +510,17 @@ Fraction Fraction::operator-(const internalInt value) const
    return *this - Fraction(value);
 }
 
+Fraction Fraction::operator-(const int value) const
+{
+   return *this - Fraction(value);
+}
+
+Fraction Fraction::operator-(const unsigned int value) const
+{
+   return *this - Fraction(value);
+}
+
+
 Fraction operator-(const inputInt value, const Fraction&rhs)
 {
    return Fraction(value) - rhs;
@@ -433,6 +530,17 @@ Fraction operator-(const internalInt value, const Fraction&rhs)
 {
    return Fraction(value) - rhs;
 }
+
+Fraction operator-(const int value, const Fraction&rhs)
+{
+   return Fraction(value) - rhs;
+}
+
+Fraction operator-(const unsigned int value, const Fraction&rhs)
+{
+   return Fraction(value) - rhs;
+}
+
 /*End Arithmetic operators*/
 
 /*Begin Comparison operators/relational operators*/
