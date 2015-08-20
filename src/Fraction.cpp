@@ -364,7 +364,6 @@ Fraction Fraction::operator+(const unsigned int value) const
    return Fraction(value) + *this;
 }
 
-
 Fraction operator+(const inputInt value, const Fraction&rhs)
 {
    return Fraction(value) + rhs;
@@ -519,7 +518,6 @@ Fraction Fraction::operator-(const unsigned int value) const
 {
    return *this - Fraction(value);
 }
-
 
 Fraction operator-(const inputInt value, const Fraction&rhs)
 {

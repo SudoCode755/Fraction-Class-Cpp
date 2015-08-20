@@ -100,7 +100,6 @@ public:
 
    friend Fraction operator+(const unsigned int value, const Fraction&rhs);
 
-
    /* Divide Operators */
 
    Fraction operator/(const Fraction&rhs) const;
@@ -138,7 +137,6 @@ public:
    friend Fraction operator*(const internalInt value, const Fraction&rhs);
 
    friend Fraction operator*(const int value, const Fraction&rhs);
-
 
    friend Fraction operator*(const unsigned int value, const Fraction&rhs);
 
