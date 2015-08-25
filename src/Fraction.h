@@ -11,7 +11,6 @@ class Fraction
 private:
    typedef long long int LLInt_64;
    typedef unsigned long long int ULLInt_64;
-
    typedef unsigned int uInt_32;
 
    ULLInt_64 numerator;

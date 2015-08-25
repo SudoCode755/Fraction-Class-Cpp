@@ -6,6 +6,7 @@
 
 typedef long long int inputInt;
 typedef unsigned long long int internalInt;
+typedef unsigned int uInt_32;
 
 
 Fraction::Fraction() :
@@ -331,7 +332,7 @@ Fraction& Fraction::operator=(const int value)
    return *this;
 }
 
-Fraction& Fraction::operator=(const unsigned int value)
+Fraction& Fraction::operator=(const uInt_32 value)
 {
    this->numerator = value;
    this->denominator = 1;
@@ -360,7 +361,7 @@ Fraction Fraction::operator+(const int value) const
    return Fraction(value) + *this;
 }
 
-Fraction Fraction::operator+(const unsigned int value) const
+Fraction Fraction::operator+(const uInt_32 value) const
 {
    return Fraction(value) + *this;
 }
@@ -379,7 +380,7 @@ Fraction operator+(const int value, const Fraction&rhs)
    return Fraction(value) + rhs;
 }
 
-Fraction operator+(const unsigned int value, const Fraction&rhs)
+Fraction operator+(const uInt_32 value, const Fraction&rhs)
 {
    return Fraction(value) + rhs;
 }
@@ -457,7 +458,7 @@ Fraction Fraction::operator*(const ULLInt_64 value) const
    return result;
 }
 
-Fraction Fraction::operator *(const unsigned int value) const
+Fraction Fraction::operator *(const uInt_32 value) const
 {
    Fraction result(*this);
    result.numerator *= value;
@@ -481,7 +482,7 @@ Fraction operator*(const internalInt value, const Fraction&rhs)
    return rhs * value;
 }
 
-Fraction operator*(const unsigned int value, const Fraction&rhs)
+Fraction operator*(const uInt_32 value, const Fraction&rhs)
 {
    return rhs * value;
 }
@@ -515,7 +516,7 @@ Fraction Fraction::operator-(const int value) const
    return *this - Fraction(value);
 }
 
-Fraction Fraction::operator-(const unsigned int value) const
+Fraction Fraction::operator-(const uInt_32 value) const
 {
    return *this - Fraction(value);
 }
@@ -535,7 +536,7 @@ Fraction operator-(const int value, const Fraction&rhs)
    return Fraction(value) - rhs;
 }
 
-Fraction operator-(const unsigned int value, const Fraction&rhs)
+Fraction operator-(const uInt_32 value, const Fraction&rhs)
 {
    return Fraction(value) - rhs;
 }
@@ -566,7 +567,7 @@ bool Fraction::operator==(const int value) const
    return *this == value;
 }
 
-bool Fraction::operator==(const unsigned int value) const
+bool Fraction::operator==(const uInt_32 value) const
 {
    return *this == value;
 }
@@ -586,7 +587,7 @@ bool operator==(const int value, const Fraction&rhs)
    return Fraction(value) == rhs;
 }
 
-bool operator==(const unsigned int value, const Fraction&rhs)
+bool operator==(const uInt_32 value, const Fraction&rhs)
 {
    return Fraction(value) == rhs;
 }
@@ -613,7 +614,7 @@ bool Fraction::operator!=(const int value) const
    return !(*this == Fraction(value));
 }
 
-bool Fraction::operator!=(const unsigned int value) const
+bool Fraction::operator!=(const uInt_32 value) const
 {
    return !(*this == Fraction(value));
 }
@@ -633,7 +634,7 @@ bool operator!=(const int value, const Fraction&rhs)
    return !(Fraction(value) == rhs);
 }
 
-bool operator!=(const unsigned int value, const Fraction&rhs)
+bool operator!=(const uInt_32 value, const Fraction&rhs)
 {
    return !(Fraction(value) == rhs);
 }
@@ -661,7 +662,7 @@ bool Fraction::operator>(const int value) const
    return *this > Fraction(value);
 }
 
-bool Fraction::operator>(const unsigned int value) const
+bool Fraction::operator>(const uInt_32 value) const
 {
    return *this > Fraction(value);
 }
@@ -681,7 +682,7 @@ bool operator>(const int value, const Fraction&rhs)
    return Fraction(value) > rhs;
 }
 
-bool operator>(const unsigned int value, const Fraction&rhs)
+bool operator>(const uInt_32 value, const Fraction&rhs)
 {
    return Fraction(value) > rhs;
 }
@@ -709,7 +710,7 @@ bool Fraction::operator<(const int value) const
    return (*this < Fraction(value));
 }
 
-bool Fraction::operator<(const unsigned int value) const
+bool Fraction::operator<(const uInt_32 value) const
 {
    return (*this < Fraction(value));
 }
@@ -729,7 +730,7 @@ bool operator<(const int value, const Fraction&rhs)
    return (Fraction(value) < rhs);
 }
 
-bool operator<(const unsigned int value, const Fraction&rhs)
+bool operator<(const uInt_32 value, const Fraction&rhs)
 {
    return (Fraction(value) < rhs);
 }
@@ -752,7 +753,7 @@ bool Fraction::operator>=(const int value) const
    return (*this >= Fraction(value));
 }
 
-bool Fraction::operator>=(const unsigned int value) const
+bool Fraction::operator>=(const uInt_32 value) const
 {
    return (*this >= Fraction(value));
 }
@@ -777,7 +778,7 @@ bool operator>=(const int value, const Fraction&rhs)
    return (Fraction(value) >= rhs);
 }
 
-bool operator>=(const unsigned int value, const Fraction&rhs)
+bool operator>=(const uInt_32 value, const Fraction&rhs)
 {
    return (Fraction(value) >= rhs);
 }
@@ -805,7 +806,7 @@ bool Fraction::operator<=(const int value) const
    return (*this <= Fraction(value));
 }
 
-bool Fraction::operator<=(const unsigned int value) const
+bool Fraction::operator<=(const uInt_32 value) const
 {
    return (*this <= Fraction(value));
 }
@@ -825,7 +826,7 @@ bool operator<=(const int value, const Fraction&rhs)
    return (Fraction(value) <= rhs);
 }
 
-bool operator<=(const unsigned int value, const Fraction&rhs)
+bool operator<=(const uInt_32 value, const Fraction&rhs)
 {
    return (Fraction(value) <= rhs);
 }
@@ -857,7 +858,7 @@ Fraction& Fraction::operator +=(const int value)
    return (*this = *this + value);
 }
 
-Fraction& Fraction::operator +=(const unsigned int value)
+Fraction& Fraction::operator +=(const uInt_32 value)
 {
    return (*this = *this + value);
 }
@@ -884,7 +885,7 @@ Fraction& Fraction::operator-=(const int value)
    return (*this = *this - value);
 }
 
-Fraction& Fraction::operator-=(const unsigned int value)
+Fraction& Fraction::operator-=(const uInt_32 value)
 {
    return (*this = *this - value);
 }
@@ -911,7 +912,7 @@ Fraction& Fraction::operator *=(const int value)
    return (*this = *this * value);
 }
 
-Fraction& Fraction::operator *=(const unsigned int value)
+Fraction& Fraction::operator *=(const uInt_32 value)
 {
    return (*this = *this * value);
 }
@@ -939,7 +940,7 @@ Fraction& Fraction::operator /=(const int value)
    return (*this = *this / value);
 }
 
-Fraction& Fraction::operator /=(const unsigned int value)
+Fraction& Fraction::operator /=(const uInt_32 value)
 {
    return (*this = *this / value);
 }
