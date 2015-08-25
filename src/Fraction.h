@@ -9,17 +9,19 @@ enum Sign
 class Fraction
 {
 private:
-   typedef long long int inputInt;
-   typedef unsigned long long int internalInt;
+   typedef long long int LLInt_64;
+   typedef unsigned long long int ULLInt_64;
 
-   internalInt numerator;
-   internalInt denominator;
+   typedef unsigned int uInt_32;
+
+   ULLInt_64 numerator;
+   ULLInt_64 denominator;
 
    Sign sign;
 
-   internalInt gcd() const;
+   ULLInt_64 gcd() const;
 
-   internalInt lcm(inputInt num1, inputInt num2) const;
+   ULLInt_64 lcm(LLInt_64 num1, LLInt_64 num2) const;
 
    Fraction dividedBy(const Fraction&value) const;
    Fraction addTo(const Fraction& value) const;
@@ -29,19 +31,19 @@ public:
 
    Fraction(const Fraction& f);
 
-   Fraction(const inputInt num, const inputInt denom);
+   Fraction(const LLInt_64 num, const LLInt_64 denom);
 
    Fraction(const int num, const int denom);
 
-   Fraction(const internalInt num, const internalInt denom, const Sign sign);
+   Fraction(const ULLInt_64 num, const ULLInt_64 denom, const Sign sign);
 
    Fraction(const unsigned num, const unsigned denom, const Sign sign);
 
-   Fraction(const inputInt num);
+   Fraction(const LLInt_64 num);
 
    Fraction(const int num);
 
-   Fraction(const internalInt num);
+   Fraction(const ULLInt_64 num);
 
    Fraction(const unsigned num);
 
@@ -49,17 +51,17 @@ public:
 
    int getSign() const;
 
-   internalInt getNumerator() const;
+   ULLInt_64 getNumerator() const;
 
-   internalInt getDenominator() const;
+   ULLInt_64 getDenominator() const;
 
    void flipSign();
 
-   void setNumerator(inputInt num);
+   void setNumerator(LLInt_64 num);
 
-   void setDenominator(inputInt denom);
+   void setDenominator(LLInt_64 denom);
 
-   void fromDecimal(double decimal, internalInt maxDenom);
+   void fromDecimal(double decimal, ULLInt_64 maxDenom);
 
    double decimalValue() const;
 
@@ -70,13 +72,13 @@ public:
 
    Fraction& operator=(const Fraction & value);
 
-   Fraction& operator=(const inputInt value);
+   Fraction& operator=(const LLInt_64 value);
 
-   Fraction& operator=(const internalInt value);
+   Fraction& operator=(const ULLInt_64 value);
 
    Fraction& operator=(const int value);
 
-   Fraction& operator=(const unsigned int value);
+   Fraction& operator=(const uInt_32 value);
 
    /*Begin Arithmetic operators*/
 
@@ -84,81 +86,81 @@ public:
 
    Fraction operator+(const Fraction&rhs) const;
 
-   Fraction operator+(const inputInt value) const;
+   Fraction operator+(const LLInt_64 value) const;
 
-   Fraction operator+(const internalInt value) const;
+   Fraction operator+(const ULLInt_64 value) const;
 
    Fraction operator+(const int value) const;
 
-   Fraction operator+(const unsigned int value) const;
+   Fraction operator+(const uInt_32 value) const;
 
-   friend Fraction operator+(const inputInt value, const Fraction&rhs);
+   friend Fraction operator+(const LLInt_64 value, const Fraction&rhs);
 
-   friend Fraction operator+(const internalInt value, const Fraction&rhs);
+   friend Fraction operator+(const ULLInt_64 value, const Fraction&rhs);
 
    friend Fraction operator+(const int value, const Fraction&rhs);
 
-   friend Fraction operator+(const unsigned int value, const Fraction&rhs);
+   friend Fraction operator+(const uInt_32 value, const Fraction&rhs);
 
    /* Divide Operators */
 
    Fraction operator/(const Fraction&rhs) const;
 
-   Fraction operator/(const inputInt value) const;
+   Fraction operator/(const LLInt_64 value) const;
 
-   Fraction operator/(const internalInt value) const;
+   Fraction operator/(const ULLInt_64 value) const;
 
    Fraction operator/(const int value) const;
 
-   Fraction operator/(const unsigned int value) const;
+   Fraction operator/(const uInt_32 value) const;
 
-   friend Fraction operator/(const inputInt value, const Fraction&rhs);
+   friend Fraction operator/(const LLInt_64 value, const Fraction&rhs);
 
-   friend Fraction operator/(const internalInt value, const Fraction&rhs);
+   friend Fraction operator/(const ULLInt_64 value, const Fraction&rhs);
 
    friend Fraction operator/(const int value, const Fraction&rhs);
 
-   friend Fraction operator/(const unsigned int value, const Fraction&rhs);
+   friend Fraction operator/(const uInt_32 value, const Fraction&rhs);
 
    /* Multiply operators */
 
    Fraction operator*(const Fraction&rhs) const;
 
-   Fraction operator*(const inputInt value) const;
+   Fraction operator*(const LLInt_64 value) const;
 
-   Fraction operator*(const internalInt value) const;
+   Fraction operator*(const ULLInt_64 value) const;
 
    Fraction operator*(const int value) const;
 
-   Fraction operator*(const unsigned int value) const;
+   Fraction operator*(const uInt_32 value) const;
 
-   friend Fraction operator*(const inputInt value, const Fraction&rhs);
+   friend Fraction operator*(const LLInt_64 value, const Fraction&rhs);
 
-   friend Fraction operator*(const internalInt value, const Fraction&rhs);
+   friend Fraction operator*(const ULLInt_64 value, const Fraction&rhs);
 
    friend Fraction operator*(const int value, const Fraction&rhs);
 
-   friend Fraction operator*(const unsigned int value, const Fraction&rhs);
+   friend Fraction operator*(const uInt_32 value, const Fraction&rhs);
 
    /*Subtraction operators */
 
    Fraction operator-(const Fraction&rhs) const;
 
-   Fraction operator-(const inputInt value) const;
+   Fraction operator-(const LLInt_64 value) const;
 
-   Fraction operator-(const internalInt value) const;
+   Fraction operator-(const ULLInt_64 value) const;
 
    Fraction operator-(const int value) const;
 
-   Fraction operator-(const unsigned int value) const;
+   Fraction operator-(const uInt_32 value) const;
 
-   friend Fraction operator-(const inputInt value, const Fraction&rhs);
+   friend Fraction operator-(const LLInt_64 value, const Fraction&rhs);
 
-   friend Fraction operator-(const internalInt value, const Fraction&rhs);
+   friend Fraction operator-(const ULLInt_64 value, const Fraction&rhs);
 
    friend Fraction operator-(const int value, const Fraction&rhs);
 
-   friend Fraction operator-(const unsigned int value, const Fraction&rhs);
+   friend Fraction operator-(const uInt_32 value, const Fraction&rhs);
 
    /*End Arithmetic operators*/
 
@@ -168,73 +170,121 @@ public:
 
    bool operator==(const Fraction&rhs) const;
 
-   bool operator==(const inputInt value) const;
+   bool operator==(const LLInt_64 value) const;
 
-   bool operator==(const internalInt value) const;
+   bool operator==(const ULLInt_64 value) const;
 
-   friend bool operator==(const inputInt value, const Fraction&rhs);
+   bool operator==(const int value) const;
 
-   friend bool operator==(const internalInt value, const Fraction&rhs);
+   bool operator==(const uInt_32 value) const;
+
+   friend bool operator==(const LLInt_64 value, const Fraction&rhs);
+
+   friend bool operator==(const ULLInt_64 value, const Fraction&rhs);
+
+   friend bool operator==(const int value, const Fraction&rhs);
+
+   friend bool operator==(const uInt_32 value, const Fraction&rhs);
 
    /*Not-Equal-to Operators*/
 
    bool operator!=(const Fraction&rhs) const;
 
-   bool operator!=(const inputInt value) const;
+   bool operator!=(const LLInt_64 value) const;
 
-   bool operator!=(const internalInt value) const;
+   bool operator!=(const ULLInt_64 value) const;
 
-   friend bool operator!=(const inputInt value, const Fraction&rhs);
+   bool operator!=(const int value) const;
 
-   friend bool operator!=(const internalInt value, const Fraction&rhs);
+   bool operator!=(const uInt_32 value) const;
+
+   friend bool operator!=(const LLInt_64 value, const Fraction&rhs);
+
+   friend bool operator!=(const ULLInt_64 value, const Fraction&rhs);
+
+   friend bool operator!=(const int value, const Fraction&rhs);
+
+   friend bool operator!=(const uInt_32 value, const Fraction&rhs);
 
    /*Greater-than Operators*/
 
    bool operator>(const Fraction&rhs) const;
 
-   bool operator>(const inputInt value) const;
+   bool operator>(const LLInt_64 value) const;
 
-   bool operator>(const internalInt value) const;
+   bool operator>(const ULLInt_64 value) const;
 
-   friend bool operator>(const inputInt value, const Fraction&rhs);
+   bool operator>(const int value) const;
 
-   friend bool operator>(const internalInt value, const Fraction&rhs);
+   bool operator>(const uInt_32 value) const;
+
+   friend bool operator>(const LLInt_64 value, const Fraction&rhs);
+
+   friend bool operator>(const ULLInt_64 value, const Fraction&rhs);
+
+   friend bool operator>(const int value, const Fraction&rhs);
+
+   friend bool operator>(const uInt_32 value, const Fraction&rhs);
 
    /*Less-than Operators*/
 
    bool operator<(const Fraction&rhs) const;
 
-   bool operator<(const inputInt value) const;
+   bool operator<(const LLInt_64 value) const;
 
-   bool operator<(const internalInt value) const;
+   bool operator<(const ULLInt_64 value) const;
 
-   friend bool operator<(const inputInt value, const Fraction&rhs);
+   bool operator<(const int value) const;
 
-   friend bool operator<(const internalInt value, const Fraction&rhs);
+   bool operator<(const uInt_32 value) const;
+
+   friend bool operator<(const LLInt_64 value, const Fraction&rhs);
+
+   friend bool operator<(const ULLInt_64 value, const Fraction&rhs);
+
+   friend bool operator<(const int value, const Fraction&rhs);
+
+   friend bool operator<(const uInt_32 value, const Fraction&rhs);
 
    /*Greater-than-Or-Equal Operators*/
 
    bool operator>=(const Fraction&rhs) const;
 
-   bool operator>=(const inputInt value) const;
+   bool operator>=(const LLInt_64 value) const;
 
-   bool operator>=(const internalInt value) const;
+   bool operator>=(const ULLInt_64 value) const;
 
-   friend bool operator>=(const inputInt value, const Fraction&rhs);
+   bool operator>=(const int value) const;
 
-   friend bool operator>=(const inputInt value, const Fraction&rhs);
+   bool operator>=(const uInt_32 value) const;
+
+   friend bool operator>=(const LLInt_64 value, const Fraction&rhs);
+
+   friend bool operator>=(const LLInt_64 value, const Fraction&rhs);
+
+   friend bool operator>=(const int value, const Fraction&rhs);
+
+   friend bool operator>=(const uInt_32 value, const Fraction&rhs);
 
    /*Less-than-Or-Equal Operators*/
 
    bool operator<=(const Fraction&rhs) const;
 
-   bool operator<=(const inputInt value) const;
+   bool operator<=(const LLInt_64 value) const;
 
-   bool operator<=(const internalInt value) const;
+   bool operator<=(const ULLInt_64 value) const;
 
-   friend bool operator<=(const inputInt value, const Fraction&rhs);
+   bool operator<=(const int value) const;
 
-   friend bool operator<=(const internalInt value, const Fraction&rhs);
+   bool operator<=(const uInt_32 value) const;
+
+   friend bool operator<=(const LLInt_64 value, const Fraction&rhs);
+
+   friend bool operator<=(const ULLInt_64 value, const Fraction&rhs);
+
+   friend bool operator<=(const int value, const Fraction&rhs);
+
+   friend bool operator<=(const uInt_32 value, const Fraction&rhs);
 
    /*End Comparison operators/relational operators*/
 
@@ -244,33 +294,50 @@ public:
 
    Fraction& operator+=(const Fraction & value);
 
-   Fraction& operator+=(const inputInt value);
+   Fraction& operator+=(const LLInt_64 value);
 
-   Fraction& operator+=(const internalInt value);
+   Fraction& operator+=(const ULLInt_64 value);
+
+   Fraction& operator+=(const int value);
+
+   Fraction& operator+=(const uInt_32 value);
 
    /*Subtraction assignment operators*/
 
    Fraction& operator-=(const Fraction & value);
 
-   Fraction& operator-=(const inputInt value);
+   Fraction& operator-=(const LLInt_64 value);
 
-   Fraction& operator-=(const internalInt value);
+   Fraction& operator-=(const ULLInt_64 value);
+
+   Fraction& operator-=(const int value);
+
+   Fraction& operator-=(const uInt_32 value);
 
    /* Multiplication assignment operators*/
 
    Fraction& operator*=(const Fraction & value);
 
-   Fraction& operator*=(const inputInt value);
+   Fraction& operator*=(const LLInt_64 value);
 
-   Fraction& operator*=(const internalInt value);
+   Fraction& operator*=(const ULLInt_64 value);
+
+   Fraction& operator*=(const int value);
+
+   Fraction& operator*=(const uInt_32 value);
+
 
    /* Division  assignment operators*/
 
    Fraction& operator/=(const Fraction & value);
 
-   Fraction& operator/=(const inputInt value);
+   Fraction& operator/=(const LLInt_64 value);
 
-   Fraction& operator/=(const internalInt value);
+   Fraction& operator/=(const ULLInt_64 value);
+
+   Fraction& operator/=(const int value);
+
+   Fraction& operator/=(const uInt_32 value);
 
    /*End Compound Assignment operators*/
 
