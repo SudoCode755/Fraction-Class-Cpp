@@ -194,11 +194,11 @@ Fraction Fraction::dividedBy(const Fraction&value) const
 
 internalInt Fraction::gcd() const
 {
-   ULLInt_64 u = numerator, v = denominator;
+   ULLInt_64 u = numerator, v = denominator,r;
 
-   while (v != LLInt_64(0))
+   while (v != 0)
    {
-      ULLInt_64 r = u % v;
+      r = u % v;
       u = v;
       v = r;
    }
@@ -222,9 +222,17 @@ internalInt Fraction::lcm(LLInt_64 num1, LLInt_64 num2) const
 
 void Fraction::reduce()
 {
+   if(numerator!=0)
+   {
    ULLInt_64 temp = (this->gcd());
    numerator = numerator / temp;
    denominator = denominator / temp;
+   }
+   else
+   {
+      denominator = 1
+            ;
+   }
 }
 
 void Fraction::fromDecimal(double decimal, ULLInt_64 maxDenom)
