@@ -132,6 +132,7 @@ void Fraction::setNumerator(LLInt_64 num)
    {
       sign = negative;
    }
+   this->reduce();
 }
 
 void Fraction::setDenominator(LLInt_64 denom)
@@ -141,6 +142,7 @@ void Fraction::setDenominator(LLInt_64 denom)
    {
       sign = negative;
    }
+   this->reduce();
 }
 
 void Fraction::flipSign()
@@ -449,12 +451,13 @@ Fraction Fraction::operator*(const Fraction&rhs) const
 
 Fraction Fraction::operator*(const LLInt_64 value) const
 {
-   Fraction result;
+   Fraction result(*this);
    result.numerator *= abs(value);
    if (value < 0)
    {
       result.flipSign();
    }
+   result.reduce();
    return result;
 
 }
@@ -463,6 +466,7 @@ Fraction Fraction::operator*(const ULLInt_64 value) const
 {
    Fraction result(*this);
    result.numerator *= value;
+   result.reduce();
    return result;
 }
 
@@ -470,13 +474,19 @@ Fraction Fraction::operator *(const uInt_32 value) const
 {
    Fraction result(*this);
    result.numerator *= value;
+   result.reduce();
    return result;
 }
 
 Fraction Fraction::operator *(const int value) const
 {
    Fraction result(*this);
-   result.numerator *= value;
+   result.numerator *= abs(value);
+   if (value < 0)
+   {
+      result.flipSign();
+   }
+   result.reduce();
    return result;
 }
 

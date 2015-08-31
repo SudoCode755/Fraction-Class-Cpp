@@ -1,0 +1,7 @@
+.cproject
+.project
+/Default/
+
+.settings/language.settings.xml
+*.prefs
+/Debug/
